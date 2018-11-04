@@ -11,6 +11,7 @@ module.exports = function(app) {
   app.get("/users", controllers_transactions.getuser);
   app.get("/transactions", controllers_transactions.get);
   app.post("/transactions", controllers_transactions.add);
+  app.patch("/transactions/:Expense_id", controllers_transactions.update);
   app.delete("/transactions/:Expense_id", controllers_transactions.delete);
 };
 

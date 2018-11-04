@@ -59,13 +59,26 @@ module.exports = {
   add: (req, res) => {
     knex("transactions")
       .insert({
-        business_name: req.body.content,
+        business_name: req.body.business_name,
         amount: req.body.amount,
         type: req.body.type
       })
       .returning("*")
       .then(result => {
         res.json(result[0]);
+      });
+  },
+  update: (req, res) => {
+    knex("transactions")
+      .where("id", req.params.Expense_id)
+      .update({
+        business_name: req.body.business_name,
+        amount: req.body.amount,
+        type: req.body.type
+      })
+      .returning("*")
+      .then(result => {
+        res.json(result);
       });
   }
 };

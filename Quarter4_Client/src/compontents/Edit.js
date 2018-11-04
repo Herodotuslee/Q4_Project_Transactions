@@ -2,10 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Container, Button, Form, FormGroup, Label, Input } from "reactstrap";
-import { addExpense } from "../actions/expense";
+import { updateExpense } from "../actions/expense";
 class EditPage extends Component {
   state = {
-    id: "",
     amount: "",
     business_name: "",
     type: ""
@@ -21,6 +20,7 @@ class EditPage extends Component {
   }
 
   handleChangeBusiness = e => {
+    console.log("bus", e.target.value);
     this.setState({
       business_name: e.target.value
     });
@@ -40,12 +40,8 @@ class EditPage extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.addExpense(this.state).then(() => {
-      this.setState({
-        business_name: "",
-        amount: 0,
-        type: ""
-      });
+    this.props.updateExpense(this.state).then(() => {
+      this.setState({ business_name: "", amount: 0, type: "" });
     });
     this.props.history.push("/showall");
   };
@@ -103,7 +99,7 @@ const mapStateToProps = ({ expense }, props) => {
 };
 
 const mapDispatchToProps = {
-  addExpense
+  updateExpense
 };
 
 export default withRouter(

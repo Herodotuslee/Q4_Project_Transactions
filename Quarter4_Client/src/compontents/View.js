@@ -28,7 +28,7 @@ class View extends Component {
         </div>
       );
     } else {
-      return <div>Loasing</div>;
+      return <div>Loading</div>;
     }
   }
 }

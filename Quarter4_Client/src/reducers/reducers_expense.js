@@ -4,7 +4,9 @@ import {
   ADD_EXPENSE_SUCCESS,
   ADD_EXPENSE_FAILED,
   DELETE_EXPENSE_SUCCESS,
-  DELETE_EXPENSE_FAILED
+  DELETE_EXPENSE_FAILED,
+  UPDATE_EXPENSE_SUCCESS,
+  UPDATE_EXPENSE_FAILED
 } from "../actions/expense";
 
 export default function(state = [], action) {
@@ -20,6 +22,10 @@ export default function(state = [], action) {
     case DELETE_EXPENSE_SUCCESS:
       return state.filter(item => item.id !== action.payload);
     case DELETE_EXPENSE_FAILED:
+      return action.payload;
+    case UPDATE_EXPENSE_SUCCESS:
+      return [...state, action.payload];
+    case UPDATE_EXPENSE_FAILED:
       return action.payload;
     default:
       return state;
